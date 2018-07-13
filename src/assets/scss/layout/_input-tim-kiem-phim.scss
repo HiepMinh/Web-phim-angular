@@ -1,0 +1,61 @@
+// @import "./../../../assets/scss/helpers/_variables";
+// @import "./../../../assets/scss/helpers/_mixin";
+// @import "./../../../assets/scss/base/_reset";
+// @import "./../../../assets/scss/base/_typography";
+// @import "./../../../assets/scss/component/_form";
+
+.tim-kiem-phim{
+	background: transparent;
+	position: relative;
+	border: none;
+	
+    .form-marvel{
+		background: #000;
+        transform: skew(0deg);
+        width: 100%;
+        &::placeholder{
+            transform: skew(0deg);
+        }
+	}
+	.divDSPhinTim {
+		background: #eee;
+		padding: 17px 30px;
+		border-radius: .5em;
+		.ResultLenght{
+			font-size: 17px;
+			color: #000;
+		}
+		.one-block-phim-can-tim {
+			display: flex;
+			padding: 12px 0;
+			border-bottom: 1px solid #000;
+			margin-bottom: 10px;
+			.img-phim {
+				margin-right: 20px;
+				img {
+					width: 74px;
+				}
+			}
+			.main-info{
+				.name{
+					font-size: 25px;
+					font-family: lato-reg;
+				}
+				p.date {
+					font-size: 14px;
+					font-family: trade-bold;
+					margin: 1px 0 11px;
+				}
+				button[mat-raised-button]{
+					min-width: auto !important;
+					line-height: 0 !important;
+					padding: 13px 11px;
+					font-size: 12px;
+				}
+			}
+		}
+	}
+}
+
+
+

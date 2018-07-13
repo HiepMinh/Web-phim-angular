@@ -1,0 +1,238 @@
+<div class="container" id="dataPhim">
+	<div class="row">
+		<div class="col-md-10 col-12 mx-auto mb-4">
+			<mat-form-field class="example-full-width">
+				<span matPrefix><i class="fa fa-search 	"></i></span>
+				<input type="tel" matInput placeholder="Nhập Tên Phim Cần Tìm...">
+			</mat-form-field>
+			<button 
+				mat-raised-button color="primary"
+				(click)="CallModalThemPhim()"
+				data-toggle="modal"
+				data-target="#modalThem"
+				>Thêm Phim</button>
+			
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10 col-12 mx-auto">
+			<table class="table table-hoverable table-striped tableData z-depth-2" id="tablePhim">
+				<thead>
+					<tr>
+						<th>Mã Phim</th>
+						<th>Tên Phim</th>
+						<th>Trailer</th>
+						<th>Ngày Khởi Chiếu</th>
+						<th>Thao Tác</th>
+					</tr>
+				</thead>
+				<tbody id="dataPhim">
+					<tr *ngFor="let data of DanhSachPhimServices | paginate: { itemsPerPage:  entryMovie  , currentPage: p4, id: 'DanhSachPhimAdmin' } ; let i = index">
+						<td>{{ data.MaPhim }}</td>
+						<td>{{ data.TenPhim }}</td>
+						<td>
+							<button 
+							class="btnTrailer"  
+							(click)="showTrailer(data.Trailer)" 
+							data-toggle="modal" 
+							data-target="#modalTrailer"
+							mat-raised-button color="primary">
+							Trailer
+							</button>
+						</td>
+						<td>{{ data.NgayKhoiChieu | date }}</td>
+						<td>
+							<button 
+								mat-raised-button color="primary"
+								(click)="xoaPhim(data.MaPhim)"
+								>Xoá</button>
+							<button 
+							mat-raised-button 
+							color="warn" 
+							(click)="CallModalSuaPhim(data.MaPhim)"
+							data-toggle="modal"
+							data-target="#modalSuaPhim"
+							>Sửa</button>
+						</td>
+					</tr>	
+				</tbody>
+			</table>
+			<pagination-controls 
+			(pageChange)="p4 = $event" 
+			class="my-pagination"  
+			id="DanhSachPhimAdmin" 
+			autoHide="{{ hidePagiControl }}">
+			</pagination-controls>
+		</div>
+	</div>
+
+</div>
+
+<ng-container *ngIf="CallModalSua">
+	<div class="modal fade" id="modalSuaPhim">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Sửa Thông Tin Phim</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form 
+					#registerForm="ngForm" 
+					(ngSubmit)="CapNhatPhim(registerForm.value,file.files,date)" 
+					class="text-white">
+						<mat-form-field class="example-full-width">
+							<input 
+								type="number" 
+								name="MaPhim" 
+								#MaPhim="ngModel"
+								[(ngModel)]="MovieDetail.MaPhim"
+								matInput 
+								placeholder="Mã Phim" >
+						</mat-form-field>
+						<mat-form-field class="example-full-width">
+							<input 
+								type="text" 
+								name="TenPhim" 
+								#TenPhim="ngModel"
+								[(ngModel)]="MovieDetail.TenPhim"
+								matInput 
+								placeholder="Tên Phim" >
+						</mat-form-field>
+						<mat-form-field class="example-full-width">
+							<input 
+								type="text" 
+								name="MoTa" 
+								#MoTa="ngModel"
+								[(ngModel)]="MovieDetail.MoTa"
+								matInput 
+								placeholder="Mô Tả" >
+						</mat-form-field>
+						<div class="form-group">
+							<label class="control-label">Image</label>
+							<input 
+							#file
+							ngModel
+							type="file" 
+							name="Image" 
+							accept=".png, .jpg, .jpeg" 
+							class="form-control">
+						</div>
+						<div class="form-group">
+							<label class="control-label">ReleaseDate</label>
+							<input 
+							[(ngModel)]="MovieDetail.NgayKhoiChieu"
+							type="date" 
+							#date ="ngModel"
+							name="NgayKhoiChieu" 
+							class="form-control">
+						</div>
+						<mat-form-field class="example-full-width">
+							<input 
+								matInput 
+								placeholder="Trailer url" 
+								name="Trailer" 
+								#Trailer="ngModel"
+								[(ngModel)]="MovieDetail.Trailer">
+						</mat-form-field>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button 
+							type="submit" 
+							class="btn btn-primary"
+							>Cập Nhật</button>
+					</form>
+				</div>
+					
+			</div>
+		</div>
+	</div>
+</ng-container>
+
+<!-- Modal -->
+<ng-container *ngIf="CallModalThem">
+	<div class="modal fade" id="modalThem">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form #registerForm="ngForm" (ngSubmit)="CreateMovie(registerForm.value,file.files,date)" class="text-white">
+						<mat-form-field class="example-full-width">
+							<input 
+								type="text" 
+								name="TenPhim" 
+								ngModel 
+								matInput 
+								placeholder="Tên Phim" >
+						</mat-form-field>
+						<mat-form-field class="example-full-width">
+							<input 
+								type="text" 
+								name="MoTa" 
+								ngModel 
+								matInput 
+								placeholder="Mô Tả" >
+						</mat-form-field>
+						<div class="form-group">
+							<label class="control-label">Image</label>
+							<input 
+							#file 
+							type="file" 
+							name="Image" 
+							accept=".png, .jpg, .jpeg" 
+							ngModel 
+							class="form-control">
+						</div>
+						<div class="form-group">
+							<label class="control-label">ReleaseDate</label>
+							<input 
+							type="date" 
+							#date 
+							name="NgayKhoiChieu" 
+							ngModel 
+							class="form-control">
+						</div>
+						<mat-form-field class="example-full-width">
+							<input 
+								matInput 
+								placeholder="Trailer url" 
+								name="Trailer" 
+								ngModel>
+						</mat-form-field>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Thêm</button>
+					</form>
+				</div>
+					
+			</div>
+		</div>
+	</div>
+</ng-container>
+
+<ng-container *ngIf="CallTrailer">
+	<div class="modal fade" #modalTrailer id="modalTrailer" tabindex="-1" role="dialog">
+		<div class="modal-dialog mx-auto  modal-dialog-centered" style="max-width: 650px;" role="document">
+			<div class="modal-content">
+				<div class="modal-body" style="background:#000">
+					<iframe class="border-0" width="100%" height="400" [src]="TrailerURL" ></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</ng-container>
+
+
+
+
+
+
+
+
+
+

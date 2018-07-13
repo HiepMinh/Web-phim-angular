@@ -1,0 +1,29 @@
+
+.divOr{
+    button{
+        transform: skew(0);
+        padding: 7px;
+        font-size: 11px;                
+    }
+}
+.linkHeading{
+    transform: skew(0deg) !important;
+    margin-left: 0;
+    span{
+        transform: skew(0deg) !important;
+    }
+    &.btnLogin{
+        // margin: 5px;
+    }
+}
+.form-marvel{
+    transform: skew(0deg);
+    &::placeholder{
+        transform: skew(0deg);
+    }
+}
+
+.formMatKhauDN{
+    margin-bottom: 0 !important;
+}
+

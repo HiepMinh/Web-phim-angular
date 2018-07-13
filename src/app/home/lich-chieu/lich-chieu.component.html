@@ -1,0 +1,98 @@
+<div  id="divThongTinChieuPhim">
+    <div class="container mx-auto">
+        <div class="row">
+            <div class="col-12">
+                <div class="headingSection">
+                    <div class="big-line"></div>
+                    <h3 class="title-section">Lịch Chiếu-Cụm Rạp</h3>
+                </div>
+            </div>
+        </div>
+    
+    
+        <div class="row divRapChieu">
+            <div class="col-md-8 mx-auto col-12 mt-5">
+                <ul>
+                    <li *ngFor="let rap of RapChieuPhim; let i = index" [ngClass]="i == 0 ? 'active' : ''" (click)="showRapChieu(linkRap.id, item)" #item class="list-item">
+                        <a href="#" class="" id="{{ rap.id }}" #linkRap>
+                            <img src="{{ urlImage +  rap.img}}" alt="">
+                            <span>{{ rap.name }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div> 
+        </div>
+        <div class="row divLichChieu">
+            <div class="col-md-10 col-12 mx-auto">
+                <div 
+                    class="container" 
+                    *ngFor="let lich of ChiTietLichChieu; let i = index"
+                    [ngClass]="i == 0 ? 'active' : ''"
+                    id="RapActive_{{ lich.id }}"
+                    >
+                    <div class="row">
+                        <div 
+                            class="col-md-4 col-12 divRap" 
+                            *ngFor="let lich of ChiTietLichChieu; let i = index"
+                            [ngClass]="i == 0 ? 'active' : ''"
+                            >
+                            <a 
+                                href="#" 
+                                class="one-block-rap"
+                                #itemRap
+                                *ngFor="let rap of lich.raps; let k = index"
+                                [ngClass]="k == 0 ? 'active' : ''"
+                                (click)="showPhimChieu(itemRap.id)"
+                                id="TenRap_{{ rap.id }}"
+                                >
+                                <div class="img-rap">
+                                    <img src="{{ urlImage + rap.hinh }}" alt="">
+                                </div>
+                                <div class="info-rap">
+                                    <h4 class="ten-rap">{{ rap.name }}</h4>
+                                    <div class="dia-chi-rap">{{ rap.diachi }}</div>
+                                    <a href="#">Bản Đồ</a>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-8 col-12 divGioChieu">
+                            <div 
+                                class="one-block-gio-chieu"
+                                *ngFor="let item__1 of lich.raps; let rapAcive = index"
+                                [ngClass]="rapAcive == 0 ? 'active' : ''"
+                                id="PhimRap_{{ item__1.id }}"
+                            >
+                                <ng-container *ngFor="let item__2 of item__1.phimChieus">
+                                    <div class="info-movie">
+                                        <img src="{{ urlImage + item__2.hinh }}" alt="">
+                                        <div class="info-right">
+                                            <a href="#" class="name">
+                                                    {{ item__2.name }}
+                                            </a>
+                                            <p>128 phút - 123Phim 8.2 - IMDb 6.7</p>
+                                        </div>
+                                    </div>
+                                    <div class="info-gio-chieu">
+                                        <strong class="type">
+                                            2D
+                                        </strong>
+                                        <ul class="gio-chieu">
+                                            <li
+                                            *ngFor="let item__3 of item__2.gioChieu"
+                                            >
+                                                <a href="#" class="time-item">{{ item__3 }}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

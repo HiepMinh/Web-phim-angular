@@ -1,0 +1,64 @@
+// @import "./../../../assets/scss/helpers/_variables";
+// @import "./../../../assets/scss/helpers/_mixin";
+// @import "./../../../assets/scss/base/_reset";
+// @import "./../../../assets/scss/base/_typography";
+// @import "./../../../assets/scss/component/_heading";
+.example-form {
+	min-width: 150px;
+	max-width: 500px;
+	width: 100%;
+}
+.mat-input-element {
+	color: #000 !important;
+	font-size: 13px!important;
+	letter-spacing: 1px;
+}
+.example-full-width {
+width: 100%;
+}
+.form-marvel{
+    background: transparent;
+    color: #fff;
+    font-weight: bold;
+    border: 2px solid #fff;
+    margin: 1rem 0;
+    border-radius: 0;
+    padding: 7px 1rem;
+    outline:none;
+    transform: skew(-11deg);
+    letter-spacing: 1px;
+    &::placeholder{
+        transform: skew(11deg);
+    }
+}
+.formAuth{
+    padding: 2rem 0;
+    background: #454545;
+    color: #fff;
+    font-family: lato-reg;
+    .title-form{
+        margin-bottom: 20px;
+    }
+    .btnLogin{
+        transform: skew(-11deg);
+        span{
+            transform: skew(11deg);
+            display: block;
+        }
+    }
+    .Or{
+        margin: 7px 0;
+        display: block;
+        font-size: 12px;
+    }
+}
+.line{
+    @include size(100%, 1px);
+    background: #545454;
+    margin: 1.5rem 0;
+}
+
+
+
+
+

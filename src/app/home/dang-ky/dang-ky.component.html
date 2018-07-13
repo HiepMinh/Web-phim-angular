@@ -1,0 +1,167 @@
+<div class="container-fluid DangKiPage">
+  <div class="overlay"></div>
+  <div class="row divFormDangKy">
+    <div class="col-12 mx-auto mt-5">
+        <form action="" class="formAuth container formDangKy" #registerForm="ngForm" (ngSubmit)="DangKy(registerForm.value, FirstName.value, LastName.value)">
+          <div class="row">
+            <div class="col-12 text-center title-form">
+              <h3>Đăng Ký</h3>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 col-12">
+              <div class="container">
+                <div class="row">
+                  <div class="col-10 mx-auto">
+                      <div class="form-group">
+                        <input 
+                          placeholder="First Name"
+                          type="text" 
+                          name="FirstName"  
+                          #FirstName
+                          class="form-control  form-marvel"
+                          ngModel>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-6 col-12">
+              <div class="container">
+                <div class="row">
+                  <div class="col-10 mx-auto">
+                    <div class="form-group">
+                      <input 
+                        placeholder="Last Name"
+                        type="text" 
+                        name="LastName"  
+                        #LastName="ngModel" 
+                        class="form-control form-marvel" 
+                        ngModel>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-11 col-10 mx-auto">
+                    <div class="form-group">
+                      <input 
+                        placeholder="User Name"
+                        type="text" 
+                        name="TaiKhoan"  
+                        #TaiKhoan="ngModel" 
+                        class="form-control form-marvel"
+                        ngModel>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-12">
+              <div class="container">
+                <div class="row">
+                  <div class="col-10 mx-auto">
+                    <div class="form-group">
+                      <input 
+                        placeholder="Password"
+                        type="password" 
+                        name="MatKhau"  
+                        #MatKhau="ngModel" 
+                        class="form-control form-marvel"
+                        ngModel>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-6 col-12">
+              <div class="container">
+                <div class="row">
+                  <div class="col-10 mx-auto">
+                    <div class="form-group">
+                      <input 
+                        placeholder="Confirm Password"
+                        type="password" 
+                        name="ConfPass"  
+                        #ConfPass="ngModel" 
+                        class="form-control form-marvel"
+                        ngModel>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-11 col-10 mx-auto">
+                    <div class="form-group">
+                      <input 
+                        placeholder="Email"
+                        type="text" 
+                        name="Email"  
+                        #Email="ngModel" 
+                        class="form-control form-marvel"
+                        ngModel>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="col-12">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-11 col-10 mx-auto">
+                    <div class="form-group">
+                      <input 
+                        placeholder="Phone Number"
+                        type="text" 
+                        name="SoDT"  
+                        #Phone="ngModel" 
+                        class="form-control form-marvel" 
+                        ngModel>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div class="col-12">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-8 mx-auto">
+                      <button class="btn rounded-0 py-2 btnLogin btn-block linkHeading mt-5 mx-0" type="submit">Đăng Ký</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+                  
+
+        </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+

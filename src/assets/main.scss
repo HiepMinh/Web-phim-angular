@@ -1,0 +1,107 @@
+$main-color: #FFA000;
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@import "./scss/helpers/_variables";
+@import "./scss/helpers/_mixin";
+@import "./scss/helpers/_placeholder";
+@import "./scss/base/_reset";
+@import "./scss/base/_typography";
+// @import "./scss/component/_button";
+@import "./scss/component/_form";
+@import "./scss/component/_heading";
+@import "./scss/component/_headingSection";
+@import "./scss/component/_icon";
+@import "./scss/component/_sight";
+
+
+
+@import "./scss/layout/_lich-chieu-phim";
+@import "./scss/layout/_chitietphim";
+@import "./scss/layout/_DangKy";
+@import "./scss/layout/_DangNhap";
+@import "./scss/layout/_danhSachPhim";
+@import "./scss/layout/_footer";
+@import "./scss/layout/_ghe";
+@import "./scss/layout/_input-tim-kiem-phim";
+@import "./scss/layout/_main-menu";
+@import "./scss/layout/_modalTrailer";
+@import "./scss/layout/_phong-ve";
+@import "./scss/layout/_slider";
+@import "./scss/layout/_thong-tin-nguoi-dung";
+@import "./scss/layout/_TinTuc";
+@import "./scss/layout/_trangchu";
+@import "./scss/layout/_video";
+
+@import "./scss/layout/_sidebar-admin";
+@import "./scss/layout/_QuanLiPhim-admin";
+//admin
+
+@import "./scss/component/_overide";
+@import "./scss/component/_loading";
+
+
+
+
+body {
+  background: #000 url("./images/bg-dot.png") repeat;
+  overflow-x: hidden;}
+// 
+// $color: #1976D2;
+// $size: 12px;
+// $time: 1;
+
+// th,td{
+// 	text-align: center;
+// }
+
+// main {
+//    width: 100vw;
+//    height: 100vh;
+//    display: flex;
+//    justify-content: center;
+//    align-items: center;
+//    background:  #090707;
+// }
+
+// .dank-ass-loader {
+//    display: flex;
+//    flex-direction: column;
+//    align-items: center;
+   
+//    .row {
+//       display: flex;
+//    }
+// }
+
+// .arrow {
+//    width: 0; 
+//    height: 0;
+//    margin: 0 (-$size / 2);
+//    border-left: $size solid transparent;
+//    border-right: $size solid transparent;
+//    border-bottom: ($size * 1.8) solid $color;
+//    animation: blink $time + s infinite;
+//    filter: drop-shadow(0 0 ($size * 1.5) $color);
+    
+//    &.down {
+//       transform: rotate(180deg);
+//    }
+   
+//    @for $i from 1 through 18 {
+//       &.outer-#{$i} {
+//          animation-delay: -($time / 18) * $i + s;
+//       }  
+//    }
+
+//    @for $i from 1 through 6 {
+//       &.inner-#{$i} {
+//          animation-delay: -($time / 6) * $i + s;
+//       }  
+//    }  
+// }
+
+// @keyframes blink {
+//   0% { opacity: 0.1; }
+//   30% { opacity: 1; }
+//   100% { opacity: 0.1; }
+// }

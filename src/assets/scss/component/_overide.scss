@@ -1,0 +1,100 @@
+//my-date-picker    
+@import "./../helpers/_mixin";
+@import "./../helpers/_variables";
+:host /deep/ .mydp {
+    transform: skew(-11deg);
+    border: 2px solid;
+    border-radius: 0;
+    z-index: 2;
+    @include tablet{
+        transform: skew(0deg);
+    }
+    .selectiongroup{
+        .selection{
+            background: #000;
+            color: #fff;
+            font-weight: bold;
+        }
+    }
+    .btnclear, .btndecrease, .btnincrease,.btnpicker, .headertodaybtn{
+        border-radius: 0;
+        background: #000;
+        color: #fff;
+        transition: .3s all;
+        &:hover{
+            color: #000;
+        }
+        .icon-mydpcalendar, .icon-mydpremove {
+            transform: skew(11deg);
+            display: block;
+        }
+    }
+    .selector{
+        transform: skew(11deg);
+        @include tablet{
+        transform: skew(0deg);
+        }
+    }
+    /** My override css properties here **/
+}
+
+.my-pagination  {
+    @include flex(center, center, row, wrap);
+    width: 100%;
+    margin-top: 30px;
+    .ngx-pagination {
+        display: flex;
+        li{
+            @include size(30px, 30px);
+            @include flex(center, center, row, wrap);
+            border: 2px solid #fff;
+            margin: 0 5px;
+            text-indent: 0!important;
+            transform: skew(-25deg);
+            background: #000;
+            color: #fff;
+            transition: .1s all;
+            &:hover{
+                a{
+                    text-decoration: none;
+                }
+                span{
+                    color: #000;
+                }
+            }
+            span{
+                font-family: trade-bold;
+                transform: skew(25deg);
+                color: #fff;
+            }
+            &.current{
+                background: #fff;
+                transform: translateY(-15px) skew(-25deg);
+                span{
+                    color: #000;
+                }
+            }
+            &.pagination-previous, &.pagination-next{
+                width: 120px;   
+                overflow: hidden;
+                a{
+                    width: 100%;
+                    color: #fff;
+                    text-align:center;  
+                }
+                &:hover{
+                    a{
+                        color: #000;
+                    }
+                }
+            }
+            &.disabled{
+                &:hover{
+                    span{
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}

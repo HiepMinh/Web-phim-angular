@@ -1,0 +1,48 @@
+.form-marvel{
+	margin: 6px 0 1.4rem;
+	&.disabled{
+		background: #80808052;
+    	cursor: not-allowed;
+	}
+}
+a[data-target='#modalXacNhanMK'] {
+    color: red;
+    font-size: 12px;
+    font-family: lato-reg;
+    display: inline-block;
+    margin-left: 14px;
+}
+.xacNhanMK button.linkHeading {
+    position: absolute;
+    top: 9px;
+    right: -7px;
+    transform: skew(0);
+	border: none;
+}
+.divBtnLink{
+	position: relative;
+	z-index: 3;
+	margin-top: 6rem;
+}
+.formAuth--infoUser{
+	margin-top: 9rem !important;
+}
+
+.tableLichSuDatVe{
+	border-radius: .5em;
+    overflow: hidden;
+
+	td, th{
+		padding: .8rem 2.3rem;
+		font-size: 13px;
+	}
+	thead{
+		color:#fff;
+		background: #2096ff;
+	}
+	tbody{
+		background: #eee;
+	}
+	
+}
+

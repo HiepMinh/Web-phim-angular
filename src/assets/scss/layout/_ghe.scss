@@ -1,0 +1,45 @@
+.mot-ghe {
+	@include size(2rem, 2rem);
+    background: transparent;
+	border: 2px solid #fff;
+	color: #fff  !important; 
+	transition: .2s all linear;
+	font-family: trade-bold;
+	position: relative;
+	margin: 0  10px 15px 0;
+	font-size: 13px;
+	border-radius: .5em;
+	cursor: pointer;
+	outline: none !important;
+	&::before{
+		@include posi-top-right(absolute, 45%, 2px);
+		font-family: FontAwesome;
+		transition: .2s all;
+		transform: scale(0);
+		content: "\f00c";
+		color: lightgreen;
+		font-weight: 200;
+		font-size: 13px;
+	}
+	&:hover, &.DangDat{
+		// border-color: transparent;
+		// box-shadow:1px 1px 8px 2px #1976d29e;
+	}
+	&.DangDat{
+		box-shadow: 0px 0px 5px 0px lightgreen;
+    	border-color: lightgreen;
+		&::before{
+			transform: scale(1);
+		}
+	}
+	&.DaDat{
+		cursor: not-allowed;
+		border: navajowhite;
+		box-shadow: 0px 0px 8px 1px #ff0202;
+		&::before{
+			transform: scale(1);
+			content: "\f00d" !important;
+			color: red;
+		}
+	}
+}

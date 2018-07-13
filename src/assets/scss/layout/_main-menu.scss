@@ -1,0 +1,242 @@
+// @import "./../../../assets/scss/helpers/_variables";
+// @import "./../../../assets/scss/helpers/_mixin";
+// @import "./../../../assets/scss/base/_reset";
+// @import "./../../../assets/scss/base/_typography";
+@import "./../../../assets/scss/component/_button";
+
+$bgNav:#000;
+.main-menu{
+    @include size(100%, $menuHeigth);
+    @include posi-top-left(fixed, 0, 0);
+    z-index: $z_index_nav;
+    background: $bgNav;
+    @include desktop{
+        height: 45px;
+    }
+    &__content{
+        @include size(70%, 100%);
+        @include flex(space-between, center, row, wrap);
+        margin: auto;
+        @include desktop{
+            width: 100%;
+            margin: 0;
+            max-width: unset;
+        }
+        .burger-icon{
+            display: none;
+            height: 100%;
+            transition: .2s all;
+            position: relative;
+            // right: 10px;    
+            &.active{
+                background: #fff;
+                .burger{
+                    transition: .2s all;
+                    background: #000;
+                    &:after, &:before{  
+                        transition: .2s all;
+                        background: #000;
+                    }
+                }
+            }
+            @include desktop{
+                display: block;
+            }
+        }
+        .content-left{
+            @include size(20%, 100%);
+            @include flex(center, center, column, wrap);
+            img{
+                @include size(100%, 100%);
+            }
+            @include mobile{
+                width: 32%;
+            }
+        }
+        .content-right{
+            @include size(75%, 100%);
+            @include flex(center, center, column, wrap);
+            @include desktop{
+                @include posi-top-right(fixed, 45px, -17rem);
+                @include size(17rem, 100%);
+                background: #000;
+                transition: .3s all;
+                z-index: 3;
+                &.active{
+                    right: 0;
+                    transform-origin: 100% 50% 0;
+                    animation: sidebarAnimate .8s cubic-bezier(0.23, 1, 0.320, 1) forwards;
+                }
+            }
+            li{
+                display: inline-block;
+            }
+            .logo-res{
+                display:none;
+                @include desktop{
+                    display: block;
+                    text-align: center;
+                    img{
+                        width: 100px;
+                    }
+                }
+            }
+            .social-auth{
+                @include size(100%, 55%);
+                @include flex(space-between, center, row, wrap);
+                border-bottom: 1px solid #3d3d3d;   
+               
+                @include desktop{
+                    height: auto;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    order: 2;
+                    border: none;
+                }
+                a{
+                    color: #fff;
+                }
+                .social{
+                    a{
+                        font-size: 17px;
+                        margin-right: 12px;
+                    }
+                    @include desktop{
+                        order: 2;   
+                    }
+                }
+                .auth{
+                    @include desktop{
+                        margin-bottom: 1rem;
+                        @include size(100%, 30px);
+                        @include flex(center, center, row, wrap);
+                    }
+                    .info-user{
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+                        position: relative;
+                        img{
+                            height: 30px;
+                            border-radius: 50%;
+                        }   
+                        .name{
+                            color: #fff;
+                            font-size: 13px;
+                            span{
+                                font-family: monts-reg;
+                                margin: 0 6px 0 11px;
+                            }
+                        }
+                        .DangXuat-ThongTin{
+                            @include posi-top-right(absolute, 50%, 50%);
+                            @include flex(center, center, column, wrap);
+                            width: 11rem;
+                            opacity: 0;
+                            visibility: hidden;
+                            transition: .2s all;
+                            transform: translateX(50%);
+                            background: #a7a4a4de;
+                            border-radius: 0 0 5px 5px;
+                            li{
+                                width: 100%;
+                                a {
+                                    cursor: pointer;
+                                    color: #252525 !important;
+                                    width: 100%;
+                                    margin: 0 !important;
+                                    display: block;
+                                    text-align: center;
+                                    padding: 7px;
+                                }
+                            }
+                            
+                        }
+                        &:hover{
+                            .DangXuat-ThongTin{
+                                top: 112%;
+                                opacity: 1;
+                                visibility: visible;
+                            }
+                        }
+                        &.active{
+                            @extend .info-user:hover;
+                        }
+                    }
+                    a{
+                        font-size: 11px;
+                        color: #ffffff;
+                        font-weight: bold;
+                        transition: .15s all;
+                        text-transform: uppercase;
+                        margin-left: 20px;
+                        @include desktop{
+                            border: 2px solid #fff;
+                            height: 100%;
+                            padding: 0 12px;
+                            @include flex(center, center, row, wrap);
+                        }
+                    }
+                }
+            }
+            .nav{
+                @include size(100%, 45%);
+                @include flex(flex-start, center, row, wrap);
+                @include desktop{
+                    margin: 2rem 0;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    height: auto;
+                }
+                li{
+                    margin-right: 20px;
+                    @include desktop{
+                        margin-right: 0;
+                        border-bottom: 1px solid #3d3d3d;   
+                        width: 100%;
+                    }
+                    a{
+                        font-size: 13px;
+                        color: #ffffff;
+                        font-weight: bold;
+                        transition: color .15s ease-in-out;
+                        text-transform: uppercase;
+                        transition: .3s all;
+                        @include desktop{
+                            color: #eee;
+                            display: block;
+                            padding: 15px 20px;
+                            text-align: center;
+                            &:hover{
+                                background: #eee;
+                                color:#000;
+                                transform: translateX(-20px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@keyframes sidebarAnimate {
+    0% {
+        border-radius: 200% 0 0 200%
+    }
+    20% {
+        transform: scaleX(1.2);
+    }
+    50% {
+        transform: scaleX(1.1);
+    }
+    80% {
+        border-radius: 0;
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+
+
+

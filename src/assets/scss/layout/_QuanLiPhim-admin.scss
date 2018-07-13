@@ -1,0 +1,40 @@
+#tablePhim{
+	border-radius: .8em;
+	overflow: hidden;
+	th, td{
+		text-align: center !important;
+		vertical-align: middle !important;
+	}
+	thead{
+		background: #1641B5;
+		color :#fff;
+		// th.mat-header-cell {
+		// 	color: #fff!important;
+		// 	font-size: 16px;
+		// 	font-weight: bold;
+		// 	font-family: lato-reg;
+		// 	.mat-checkbox{
+		// 		border-color: #fff;
+		// 		.mat-checkbox-frame{
+		// 			border-color :#fff !important;
+		// 		}
+		// 	}
+		// }
+	}
+	tbody#dataPhim {
+		background: #fff;
+		
+	}
+	
+	// .mat-column-select{
+	// 	.mat-checkbox-layout{
+	// 		margin: 0  !important;
+	// 	}
+	// }
+}
+.mat-raised-button{
+	min-width: 0 !important;
+    line-height: 30px!important;
+	padding: 0 10px!important;
+	font-size: 11px!important;
+}

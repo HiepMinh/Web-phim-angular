@@ -1,0 +1,108 @@
+<div class="phong-ve" id="divPhongVe">
+	<div class="container-fluid phong-ve__content">
+		<div class="row">
+
+			
+			
+				<div class="col-lg-8 mb-5 col-12 DanhSachGhe mx-auto" id="divDanhSachGhe">
+					<div class="container">
+						<div class="row d-flex justify-content-center align-items-center">
+							<ng-container *ngIf="State_loadDSGhe; then loaded else loading"></ng-container>
+							<ng-template #loading>
+									<i class="fa fa-spinner fa-spin fa-4x text-white"></i>
+							</ng-template>
+							<ng-template #loaded>
+								
+							<div class="col-md-10 col-12 mx-auto ">
+								<div class="info-rap"></div>
+								<div class="info-day-ghe">
+									<div class="img-screen">
+										<img src="./../../../assets/images/screen.png" class="w-100" alt="">
+									</div>
+									<div class="container">
+										<div class="row day-ghe">
+											<ng-container *ngFor="let ghe of DanhSachGhe; let i = index">
+												<div class="col-1">
+													<app-ghe 
+														[ghe]="ghe"
+														(SendObjectGhe)="ConfirmDatGhe($event)"
+													></app-ghe>
+												</div>
+											</ng-container>
+										</div>
+									</div>
+								</div>
+							</div>
+						</ng-template>
+
+							<div class="col-md-8 col-12 mx-auto">
+								<div class="divGhiChu">
+									<div class="one-block-ghi-chu  {{ note.ClassName }}" *ngFor="let note of GhiChu">
+										<i class="fa fa-{{ note.icon }}"></i>
+										<span>{{ note.text }}</span>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			
+
+			<div class="col-lg-4 col-12 mx-auto divThongTinVe">
+				<div class="divThongTinVe__content">
+					<div class="info-movie">
+						<div class="divInfo">
+							<div class="img-movie">
+								<img [src]="MovieDetail.HinhAnh" alt="">
+							</div>
+							<div class="main-info">
+								<h3 class="name-movie">{{ MovieDetail.TenPhim }}</h3>
+								<span>120 phút - 2D</span>
+									<p  class="ngay-xem">{{ ThoiGianChieu | date : 'MM-dd-yy, h:mm a'}}</p>
+								<div class="so-ghe">
+									<strong>Ghế Số: </strong>
+									<ng-container *ngIf="ListGheNgoi.length > 0; then DaCoSoGhe else ChuaCoSoGhe"></ng-container>
+
+									<ng-template #DaCoSoGhe>
+										<p *ngFor="let ghe of ListGheNgoi">{{ ghe }}</p>
+									</ng-template>
+									<ng-template #ChuaCoSoGhe>
+										<h6>Chưa Có Ghế Nào!!</h6>
+									</ng-template>
+								</div>
+							</div>
+						</div>
+						<div class="divTongTien">
+							<h5>Tổng Tiền: </h5>
+							<div class="text-right">
+								<h3 class="tong-tien" #TienThanhToan>{{ TongTien | number}}</h3>
+								<span>đ</span>
+							</div>
+						</div>	
+					</div>
+					<ng-container *ngIf="SoLuongGheDangDat > 0; then DuocDat else ChuaDuocDat"></ng-container>
+
+					<ng-template #DuocDat>
+						<button class="btnThanhToan blue-gradient btnDuocDat" (click)="ConfirmDatVe()">
+							Thanh Toán
+							<i class="fa fa-arrow-right"></i>
+						</button>
+					</ng-template>
+					
+					<ng-template #ChuaDuocDat>
+						<button 
+							class="btnThanhToan blue-gradient btnChuaDuocDat" 
+							matTooltip="Xin Chọn Ghế">
+							Thanh Toán
+							<i class="fa fa-arrow-right"></i>
+						</button>
+					</ng-template>
+
+
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>

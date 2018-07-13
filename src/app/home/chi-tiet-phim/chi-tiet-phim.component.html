@@ -1,0 +1,254 @@
+<ng-container *ngIf="LoadingService; then loaded else loading"></ng-container>
+
+<ng-template #loading>
+	<loading></loading>
+</ng-template>
+
+<ng-template #loaded>
+<div class="detail-movie">
+  <div class="container mx-auto">
+    <div class="col-lg-9 mx-auto col-12">
+        <div class="block-detail container">
+
+
+          <div class="row image-info-movie">
+            <div class="col-12 mx-auto">
+              <div class="container">
+                <div class="row">
+                    <div class="col-md-5 col-10 mx-auto divImage">
+                        <div class="block-image-movie">
+							<img mat-card-image src="{{ MovieDetail.HinhAnh }}">
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-10 mx-auto divInfo">
+                      <div class="block-info-movie">
+                        <h5 class="date">{{ MovieDetail.NgayKhoiChieu | date }}</h5>
+                        <h2 class="nameMovie">{{ MovieDetail.TenPhim }}</h2>
+                        <p class="time-type">120 min - 2D/Digital  </p>
+                        
+                        <div class="author info-item">
+                          <strong class="au-title title">Director</strong>
+                          <p class="au-detail">Hiệp Minh</p>
+                        </div>
+                        <div class="writer info-item">
+                          <strong class="writer-title title">Writer</strong>
+                          <p class="writer-detail">Hiệp Minh</p>
+                        </div>
+                        <div class="des info-item">
+                          <strong class="des-title title">Description</strong>
+                          <p class="des-detail">{{ MovieDetail.MoTa }}</p>
+                        </div>
+                      </div>
+                      <div class="rating-star">
+                          <div class="info-item star-outer">
+                            
+                            <div class="stars-inner"></div>
+                            <span class="number-rating">{{ MovieDetail.DanhGia | number }} Star</span>
+                          </div>
+                      </div>
+                    </div>
+				</div>
+				
+
+              </div>
+            </div>
+            
+
+
+            <div class="col-12 mx-auto mt-5">
+              <div class="block-btn-link">
+                <button 
+                  class="linkHeading active" 
+                  #btnDatVe 
+                  data-setShow="divDatVe"
+                  (click)="setShowDiv(btnDatVe)"
+                  [ngx-scroll-to]="'#divDatVe'" 
+                  [ngx-scroll-to-duration]="1000"
+                  [ngx-scroll-to-easing]="'easeOutCubic'"
+                  >
+                  <span>
+                      Đặt Vé
+                    <i class="fa fa-ticket ml-1"></i>
+                  </span>
+                </button>
+                <button 
+                  class="linkHeading" 
+                  #btnTrailer
+                  data-setShow="divTrailer"
+                  (click)="setShowDiv(btnTrailer)"
+                  [ngx-scroll-to]="'#divTrailer'" 
+                  [ngx-scroll-to-duration]="1000"
+                  [ngx-scroll-to-easing]="'easeOutCubic'">
+                  <span>
+                      Trailer
+                      <i class="fa fa-film ml-1"> </i>
+                  </span>
+                </button>
+				<button 
+					*ngIf="StateLichChieu"
+					class="linkHeading" 
+					#btnDanhGia
+					data-setShow="divDanhGia"
+					(click)="setShowDiv(btnDanhGia)"
+					[ngx-scroll-to]="'#divDanhGia'" 
+					[ngx-scroll-to-duration]="1000"
+					[ngx-scroll-to-easing]="'easeOutCubic'">
+					<span>
+						Nhận Xét
+						<i class="fa fa-thumbs-up ml-1"> </i>
+					</span>
+                </button>
+              </div>
+            </div>
+
+
+            <ng-container *ngIf="divShowing == 'divTrailer'">
+              <div class="col-12 " id="divTrailer">
+                  <iframe [src]="DomSanitizer.bypassSecurityTrustResourceUrl(Trailer)" width="100%" height="500" frameborder="2">
+                </iframe>
+              </div>
+            </ng-container>
+			
+			
+
+			
+			<ng-container *ngIf="divShowing == 'divDatVe' && StateLichChieu">
+
+              <div class="col-12" id="divDatVe">
+                  <div class="container divLichChieu ChiTietPage">
+                    <div class="row divRapChieu">
+                      <div class="col-md-10 mx-auto col-12 mt-5">
+                          <ul>
+                              <li *ngFor="let rap of RapChieuPhim; let i = index" [ngClass]="i == 0 ? 'active' : ''" #item class="list-item">
+                                  <a class="" id="{{ rap.id }}"  #linkRap>
+                                      <img src="{{ urlImage +  rap.img}}" alt="">
+                                      <span>{{ rap.name }}</span>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div> 
+                    </div>
+
+                    <div class="col-12 mx-auto divGioChieu p-0">
+                      <div class="container active  p-0">
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="block-ngay-chieu mb-4">
+                                <a 
+                                  #NgayChieu
+                                  id="NgayChieu_{{ link.MaLichChieu }}"
+                                  class="one-block-ngay-chieu"
+                                  *ngFor="let link of MovieDetail.LichChieu; let i = index"
+                                  [ngClass]="i == 0 ? 'active' : ''"
+                                  (click)="chooseDate(NgayChieu, GioChieu)"
+                                  >
+                                  <ng-container *ngIf="i+2 == 8; then ChuNhat else TruocChuNhat"></ng-container>
+                                  <ng-template #ChuNhat>
+                                    <div class="thu" >Chủ Nhật</div>
+                                  </ng-template>
+                                  <ng-template #TruocChuNhat>
+                                    <div class="thu" >Thứ {{ i + 2 }}</div>
+                                  </ng-template>
+                                  <div class="ngay text-center">{{ link.NgayChieuGioChieu | date : 'dd-MM' }}</div>
+                                </a>
+                            </div>
+                            
+                          </div>
+
+                          <div class="col-md-10 col-12 mx-auto mt-5">
+
+                            <div 
+                              #GioChieu
+                              class="one-block-gio-chieu"
+                              *ngFor="let link of MovieDetail.LichChieu; let i = index"
+                              [ngClass]="i == 0 ? 'active' : ''"
+                              id="GioChieu_{{ link.MaLichChieu }}"
+                              >
+                              <div class="info-movie">
+                                  <img src="./../../../assets/images/rap-01.jpg" alt="">
+                                  <div class="info-right">
+                                      <a href="#" class="name">
+                                        Phú Thọ
+                                      </a>
+                                      <p>L3-Lotte Mart NSG, 469 Nguyễn Hữu Thọ, Q.7</p>
+                                  </div>
+                              </div>
+                              <div class="info-gio-chieu">
+                                  <strong class="type">
+                                      2D
+                                  </strong>
+                                  <ul class="gio-chieu">
+                                      <li>
+                                        <ng-container *ngIf="stateDangNhap == false; then ChuaDangNhap else DaDangNhap"></ng-container>
+                                        <ng-template #DaDangNhap>
+                                            <a 
+                                              class="time-item mb-0 "
+                                              [routerLink]="['/dat-ve']"
+                                              [queryParams]="{MaLichChieu:link.MaLichChieu, MaPhim:link.MaPhim, thoiGianChieu : link.NgayChieuGioChieu}"
+                                              >
+                                                {{ link.NgayChieuGioChieu | date : 'hh:mm' }}
+                                            </a>
+                                        </ng-template>
+
+                                        <ng-template #ChuaDangNhap>
+                                            <a 
+                                              class="time-item mb-0 disable"
+                                              matTooltip="CLick Để Đăng Nhập!!"
+                                              (click)="triggerDangNhap()"
+                                            >
+                                              {{ link.NgayChieuGioChieu | date : 'hh:mm' }}
+                                          </a>
+                                        </ng-template>
+                                         
+                                      </li>
+                                  </ul>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+			</ng-container>
+			<ng-container *ngIf="divShowing == 'divDatVe' && !StateLichChieu">
+				<h4 class="text-white text-center mt-5" style="">Chưa Có Lịch Chiếu</h4>
+			</ng-container>
+
+            <ng-container *ngIf="divShowing == 'divDanhGia'">
+              <div class="col-12" id="divDanhGia">
+                <div class="one-block-danh-gia">
+
+                <div class="info-person">
+                  <div class="avatar">
+                    <img src="./../../../assets/images/ava-1.jpg" alt="" class="rounded-circle">
+                  </div>
+                  <div class="name-date">
+                    <strong class="name">Hiep</strong>
+                    <div class="date">1 Ngày Trước</div>
+                  </div>
+                </div>
+                <div class="comment">
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam placeat quaerat, vitae vel et ut sint doloremque quibusdam amet tenetur quis quas nam harum consequuntur molestiae sit quos debitis minus libero ad, nulla natus alias cumque. Soluta maiores labore nostrum magni unde, expedita molestiae tempora ullam quod. Sed, delectus consequuntur doloribus velit quam dolor ipsa ab at illum repellat pariatur aliquam quia provident iste! Voluptatum facere placeat aspernatur aperiam laudantium autem pariatur quos eaque labore, omnis ea error reprehenderit dolore itaque similique suscipit repudiandae? Modi adipisci assumenda laboriosam nobis aperiam quis. Natus aliquam iste, obcaecati voluptatem nostrum officiis. Dignissimos, alias.</p>
+                </div>
+              </div>
+                
+
+
+
+              </div>
+            </ng-container>
+
+
+          </div>
+		</div>
+		
+    </div>
+  </div>
+</div>
+</ng-template>
+
+
+
+

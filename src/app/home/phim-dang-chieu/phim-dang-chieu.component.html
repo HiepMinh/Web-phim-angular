@@ -1,0 +1,86 @@
+<div class="row rowPhimDangChieu mx-auto">
+  <div class="col-md-6 col-12 showEntries">
+      <div class="d-flex align-items-center justify-content-end divEntry">
+        <h5 class="mb-0">Show Entries:</h5>
+        <select 
+          [(ngModel)]="entryMovie" 
+          #selectEntry 
+          class="selecEntry linkHeading mx-4" 
+          (change)="showEntries(selectEntry.value)">
+            <option value="{{ entry.value }}" *ngFor="let entry of entryList">{{ entry.view }}</option>
+        </select>
+      </div>
+  </div>
+  <div 
+    class="col-lg-3 col-12 p-lg-0" 
+    *ngFor="let phim of DanhSachPhimServices | paginate: { itemsPerPage:  entryMovie  , currentPage: p1, id: 'DanhSachPhimDangChieu' }"
+    >
+    <div class="OneBlockMovie">
+      <div class="OneBlockMovie__thumbnail">
+        <img [src]="phim.HinhAnh" class="img-fluid" alt="">
+      </div>
+      <div class="OneBlockMovie__overlay" href="#">
+      </div>
+
+      <div class="star">
+        <span>{{ phim.DanhGia | number}}</span>
+        <i class="fa fa-star"></i>
+      </div>
+      <div class="OneBlockMovie__content">
+        <div class="header">
+          <div class="realeseDate">
+            <h5>{{ phim.NgayKhoiChieu | date}}</h5>
+          </div>
+
+        </div>
+        
+        <div class="data">
+          	<div class="data__text">
+            	<div class="author">
+              		<h5>Jack Sparrow</h5>
+            	</div>
+				<div class="detail">
+					<h2 class="movieName">{{ phim.TenPhim }}</h2>
+					<p class="Desc">
+						{{ phim.MoTa }}
+					</p>
+				</div>
+          	</div>
+        </div>
+          <div class="btnLink">
+			<button 
+				class="btn btnDetail w-100 linkHeading" 
+				[routerLink]="['/chi-tiet-phim']" 
+				[queryParams]="{id:phim.MaPhim}">
+              <span> Đặt Vé</span>
+            </button>
+            <button class="btnTrailer linkHeading"  (click)="showTrailer(phim.Trailer)" data-toggle="modal" data-target="#modalTrailer">
+              <i class="fa fa-play"></i>
+            </button>
+          </div>
+      </div>
+     
+    </div>
+  </div>
+  <pagination-controls 
+    (pageChange)="p1 = $event" 
+    class="my-pagination"  
+    id="DanhSachPhimDangChieu" 
+    autoHide="{{ hidePagiControl }}">
+  </pagination-controls>
+</div>
+
+<!-- Button trigger modal -->
+  <!-- Modal -->
+<ng-container *ngIf="CallTrailer">
+	<div class="modal fade" #modalTrailer id="modalTrailer" tabindex="-1" role="dialog">
+		<div class="modal-dialog mx-auto  modal-dialog-centered" style="max-width: 650px;" role="document">
+		  	<div class="modal-content">
+				<div class="modal-body p-0" style="background:#000">
+					<iframe class="border-0" width="100%" height="400" [src]="TrailerURL" ></iframe>
+				</div>
+		  	</div>
+		</div>
+	</div>
+</ng-container>
+   

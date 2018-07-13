@@ -1,0 +1,97 @@
+<div class="divTinTuc" id="News">
+  <div class="container blockNews">
+    <div class="row">
+      <div class="col-12">
+        <div class="headingSection">
+          <div class="big-line"></div>
+          <h3 class="title-section">Tin Tức</h3>
+        </div>
+      </div>
+    </div>
+
+    <div id="carouselExampleControls" class="carousel slide row  block-new" data-ride="carousel">
+      <div class="carousel-inner col-11 p-0">
+        <div class="carousel-item container p-0" *ngFor="let new of listNews_1; let k = index" [ngClass]="k == 0 ? 'active' : ''">
+          <div class="row one-block-new w-100">
+            <div class="col-md-7 col-12 one-block-new__content  one-block-new--image p-0">
+              <img class="card-img-top img-fluid h-100" [src]="new.image" alt="Card image cap">
+              <div class="overlay overlay--news"></div>
+              <button mat-fab color="primary" matTooltip="Detail">
+                <i class="fa fa-book fa-2x"></i>
+              </button>
+            </div>
+            <div class="col-md-5 col-12 one-block-new__content  one-block-new--text">
+              <div class="card-body">
+                <h5 class="card-title">{{ new.title }}</h5>
+                <p class="card-text">{{ new.description }}.</p>
+                <button mat-raised-button color="primary">Chi Tiết</button>
+
+              </div>
+
+              <div class="info-new">
+                <div class="nguoi-dang d-flex align-items-center">
+                  <span class="mr-2">
+                    <i class="fa fa-user-circle"></i>
+                  </span>
+                  <strong>{{ new.author }}</strong>
+                </div>
+                <div class="btn-new">
+                  <div class="like">
+                    <span class="fa fa-thumbs-o-up"></span>
+                    <span class="amount">{{ new.like | number }}</span>
+                  </div>
+                  <div class="comment">
+                    <span class="fa fa-comment-o"></span>
+                    <span class="amount">{{ new.comment | number }}</span>
+                  </div>
+                  <div class="view">
+                    <span class="fa fa-eye"></span>
+                    <span class="amount">{{ new.view | number }}</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-1 divCarouselControl">
+        <a class="carousel-control-next carousel-control" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="fa fa-angle-right" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+
+
+    <div class="row divSmallNews">
+      <div class="col-md-4 col-12" *ngFor="let new of listNews_2 | paginate: { itemsPerPage:  entryNews  , currentPage: p2, id: 'DanhSachNews'}">
+        <a href="#" class="one-small-new card w-100 border-0">
+          <div class="card-image">
+            <img class="card-img-top img-fluid" src="{{ new.image }}" alt="Card image cap">
+            <div class="bg-behind"></div>
+            <div class="bg-behind-2"></div>
+          </div>
+          <div class="card-body">
+            <h3 href="#" class="card-link">{{ new.title }}</h3>
+            <p class="card-text">{{ new.description }}</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 text-center">
+          <button class="linkHeading btnSmallNew mx-auto btn" #btnSeemore (click)="seemore(btnSeemore)">
+            <span>More</span>
+          </button>
+
+        <!-- <ng-template #btnSeeless>
+          <button class="linkHeading btnSmallNew mx-auto btn" #btnSeeless (click)="seeless(btnSeeless)">
+            <span>Less</span>
+          </button>
+        </ng-template> -->
+      </div>
+      <!-- <pagination-controls (pageChange)="p2 = $event" id="DanhSachNews"></pagination-controls> -->
+    </div>
+
+
+  </div>
+</div>

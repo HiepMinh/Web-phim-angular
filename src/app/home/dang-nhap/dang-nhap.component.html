@@ -1,0 +1,138 @@
+<form 
+  #SignUpForm="ngForm" 
+  class="container formDangNhap formAuth m-0" 
+  (ngSubmit)="DangNhap(SignUpForm.value, SignUpForm)"
+  >
+  <div class="row">
+    <div class="col-12 text-center title-form">
+      <h3>Đăng Nhập</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-8 mx-auto">
+              <div class="form-group">
+                <input 
+                  placeholder="Tài Khoản"
+                  type="text" 
+                  name="TaiKhoan"  
+                  #TaiKhoan="ngModel" 
+                  class="form-control form-marvel"
+                  required
+                  ngModel>
+                  <!-- <span 
+                    class="alert alert-warning" 
+                    *ngIf="TaiKhoan.errors && (TaiKhoan.dirty || TaiKhoan.touched)"
+                    >
+                    <p *ngIf="TaiKhoan.errors.required">
+                      Vui lòng nhập tài khoản
+                    </p>
+                </span> -->
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-8 mx-auto">
+              <div class="form-group">
+                <input 
+                  placeholder="Mật Khẩu"
+                  type="password" 
+                  name="MatKhau"  
+                  #MatKhau="ngModel" 
+                  required
+                  class="form-control form-marvel formMatKhauDN"
+                  ngModel>
+                  <!-- <span 
+                    class="alert alert-warning" 
+                    *ngIf="MatKhau.errors && (MatKhau.dirty || MatKhau.touched)"
+                    >
+                    <p *ngIf="MatKhau.errors.required">
+                      Vui lòng nhập mật khẩu
+                    </p>
+                </span> -->
+              </div>
+             
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-8 mx-auto">
+            <div class="line">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-8 mx-auto">
+              <button class=" btn-block rounded-0 py-2 btnDangNhap btnLogin linkHeading" type="submit">
+                <span>
+                    <i class="fa fa-sign-in mr-2"></i>
+                    Đăng Nhập
+                </span>
+              </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-12 text-center">
+      <span class="Or">Hoặc Bạn Có Thể Đăng Nhập Bằng...</span>
+    </div>
+
+
+
+    <div class="col-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-8 mx-auto d-flex">
+              <button class="btn-block rounded-0 py-2 linkHeading btnLogin w-50 btnDNFacebook mr-1">
+                <span>
+                    <i class="fa fa-facebook mr-2"></i>
+                    Facebook
+                </span>
+              </button>
+
+              <button class="btn-block rounded-0 py-2 linkHeading btnLogin w-50 btnDNGoogle ml-1 mt-0 mr-0">
+                <span>
+                    <i class="fa fa-google-plus mr-2"></i>
+                    Google
+                </span>
+              </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 d-flex justify-content-center align-items-center mt-3 divOr">
+      <span class="Or">Bạn Chưa Có Tài Khoản?</span>
+      <span>
+        <button class="btn linkHeading" data-dismiss="modal" [routerLink]="['/dang-ky']">Đăng Ký</button>
+      </span>
+    </div>
+  </div>
+</form>
+
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+<ng-container *ngIf="MotGhe.DaDat == false; then GheChuaDat else GheDaDat"></ng-container>
+<ng-template #GheChuaDat>
+	<button 
+		class="mot-ghe" 
+		#BtnDatVe
+		[ngClass]="TrangThaiGhe ? 'DangDat' : ''"
+		(click)="DatGhe(MotGhe)"
+		>
+		{{ MotGhe.TenGhe }}
+	</button>
+</ng-template>
+<ng-template #GheDaDat>
+	<button class="mot-ghe DaDat"
+			matTooltip="Ghế Đã Được Đặt!!">
+		{{ MotGhe.TenGhe }}
+	</button>
+</ng-template>
+

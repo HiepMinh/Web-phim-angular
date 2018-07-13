@@ -1,0 +1,62 @@
+.slider{
+    @include size(100vw, 100%);
+	margin-top: 70px;
+	@include desktop{
+		margin-top: 40px;
+	}
+    .carousel-control{
+        @include size(5%, 20%);
+        background: #fff;
+        color: #000;
+        font-size: 70px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .carousel-indicators{
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        .slideButton{
+            @include size(30px, 30px);
+            @include flex(center, center, row, wrap);
+            text-indent: 0!important;
+            transform: skew(-25deg);
+            background: #000;
+            color: #fff;
+            transition: .1s all;
+            span{
+                font-family: trade-bold;
+                transform: skew(25deg);
+            }
+            &.active{
+                background: #fff;
+                color: #000;
+                transform: translateY(-15px) skew(-25deg);
+            }
+        }
+    }
+    .carousel-item{
+        .fa{
+            @include posi-top-left(absolute, 50%, 50%);
+            @include size(70px, 70px);
+            @include flex(center, center, row, wrap);
+            transition: .3s all;
+            transform: translate(-50%, -50%);
+            background: #ffffff73;
+            border-radius: 50%;
+            opacity: 0;
+            visibility: hidden;
+            font-size: 20px;
+            &:hover{
+                color: gray;
+            }
+        }
+        &:hover{
+            .fa{
+                // opacity: 1;
+                // visibility: visible;
+            }
+        }
+    }
+    
+}

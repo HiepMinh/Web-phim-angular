@@ -1,0 +1,220 @@
+// @import "./../../../assets/scss/helpers/_variables";
+// @import "./../../../assets/scss/helpers/_mixin";
+// @import "./../../../assets/scss/base/_reset";
+// @import "./../../../assets/scss/base/_typography";
+// @import "./../../../assets/scss/component/_heading";
+// @import "./_lich-chieu-phim";
+
+.title-divTrailer{
+    color: #fff;
+    margin-bottom: 2rem;
+    display: block;
+    font-family: trade-bold;
+    font-size: 35px;
+}
+.info-item {
+    margin: 17px 0;
+}
+.detail-movie{
+    padding: 10rem 0; 
+    background:url("images/bg-news.jpg") no-repeat center center fixed;
+	background-size: cover;
+	@include tablet{
+		padding-top: 6rem;
+	}
+    .image-info-movie{
+        .divImage{
+            img{
+                width: 100%;
+            }
+        }
+        .divInfo{
+            @include flex(flex-start, flex-start, column, wrap);
+            padding: 9px 2rem;
+			color: #fff;
+			@include tablet{
+				padding-top: 30px;
+			}
+            .block-info-movie{
+                .date{
+                    font-size: 15px;
+                }
+                h2.nameMovie {
+                    font-size: 41px;
+                    font-family: monts-reg;
+                    margin: .4rem 0 3px;
+                }
+                .time-type{
+                    color: #e3e3e3;
+                    font-family: monospace;
+                    font-size: 13px;
+                }
+                
+                p.au-detail, .des-detail, .writer-detail {
+                    font-size: 13px;
+                    font-family: trade-1;
+                }
+            }
+            
+        }
+        #divTrailer{
+            margin: 3rem 0;
+        }
+    }
+}
+.block-btn-link{
+	@include flex(center, center, row, wrap);
+    .linkHeading{
+		transform: skew(0deg);
+		@include mobile{
+			padding: 8px 13px;
+			margin-bottom: 20px;
+		}
+        span{
+			@include mobile{
+				font-size: 11px;
+			}
+            transform: skew(0deg);
+            font-size: 13px;
+        }
+    }
+}
+.rating-star{
+	@include tablet{
+		margin: auto;
+	}
+    .star-outer{
+        position: relative;
+        @include flex(center, center, column, wrap);
+        &::before{
+            font-family: FontAwesome;
+            content: "\f005 \f005 \f005 \f005 \f005";
+            color: #ccc;
+            font-weight: 200;
+            font-size: 30px;
+        }
+        span.number-rating {
+            font-size: 20px;
+            font-family: trade-bold;
+        }
+    }
+    .stars-inner{
+        @include posi-top-left(absolute, 0, 0);
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0;
+        &::before{
+            font-family: FontAwesome;
+            content: "\f005 \f005 \f005 \f005 \f005";
+            color: #c6ff00;
+            font-size: 30px;
+            font-weight: 300;
+        }
+    }
+}
+
+
+.divLichChieu.ChiTietPage{
+    .divRapChieu{
+		margin-bottom: 40px;
+		img{
+			@include mobile{
+				width: 40px;
+			}
+		}
+		li{
+			margin: .2rem;
+		}
+    }
+    .divGioChieu{
+		border-left: none;
+        .block-ngay-chieu{
+			@include flex(center, center, row, wrap);
+			font-family: lato-reg;
+			@include tablet{
+				justify-content: space-around;
+			}
+			@include mobile{
+				justify-content: flex-start;
+			}
+            a{
+                cursor: pointer;  
+                @include model(3px,10px);  
+                border-radius: 5px;
+                color: #fff;
+                font-size: 13px;
+                &.active{
+                    border: 3px solid #fff;
+                }
+                &:hover{
+                    text-decoration: underline !important;
+				}
+				@include tablet{
+					margin: 0;
+					padding: 9px;
+					.thu{
+						display: none;
+					}
+				}
+            }
+        }
+       
+        .info-movie{
+            img{
+                height: 50px;
+            }
+            
+        }
+        .info-gio-chieu{
+			.gio-chieu{
+				width:auto;
+				.time-item{
+					cursor: pointer;
+				}
+			}
+            
+        }
+    }
+}
+#divDanhGia{
+    margin-top: 50px;
+    .one-block-danh-gia{
+        background: #fff;
+        border-radius: 5px;
+        padding: 22px 40px;
+        margin-bottom: 25px;
+        .info-person{
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            .avatar{
+                margin-right: 15px;
+                img{
+                    width: 50px;
+                }
+            }
+            .name-date{
+                padding-top: 10px;
+                .name{
+                    font-size: 18px;
+                    font-family: lato-reg;
+                }
+                .date{
+                    font-size: 11px;
+                    font-weight: bold;
+                    color: gray;
+                    position: relative;
+                    bottom: 4px;    
+                }
+            }
+        }
+        .comment {
+            color: #696969;
+            font-family: lato-reg;
+            font-size: 13px;
+            line-height: 20px;
+        }
+    }
+}
+
+

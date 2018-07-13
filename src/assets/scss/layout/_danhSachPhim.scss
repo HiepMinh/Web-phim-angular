@@ -1,0 +1,257 @@
+.danhSachPhimContent{
+    margin: 2rem auto 1rem;
+    padding: 80px 0;
+}
+
+.linkContent{
+    @include tablet{
+        justify-content: center !important;
+    }
+    .linkHeading{
+        transform: skew(0deg);
+        span{
+            transform: skew(0deg);
+        }
+        @include tablet{
+            font-size: 12px;
+        }
+    }
+}
+.rowPhimDangChieu{
+    position: relative;
+    @include tablet{
+        width: 95%; 
+    }
+
+    .showEntries{
+        @include posi-top-right(absolute, -96px, 0);
+        @include tablet{
+            position: static;
+            margin-bottom: 20px;
+        }
+        .divEntry{
+            @include tablet{
+                justify-content: center !important;
+            }
+            select{
+                transform: skew(0deg);
+                @include tablet{
+                    padding: 4px 19px;
+                }
+                option{
+                    color: #fff;
+                    background: #000;
+                    font-weight: bold;
+                }
+            }
+            h5{
+                font-size:20px;
+                font-family: trade-bold;
+                color:#fff;
+                @include tablet{
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}
+
+.OneBlockMovie{
+    @include size(95%, 400px);
+    position: relative;
+    cursor: pointer;
+    margin: 0 auto 40px;
+    transition: .2s all;
+    @include desktop{
+        @include size(100%, auto);
+        margin: 0;
+        margin-bottom: 30px;
+        display: flex;
+		align-items: center;
+		padding: 13px;
+		background: linear-gradient(to right, #24282b2b 0%, #38484e 100%);
+		border-radius: .5em;
+		.linkHeading, .linkHeading.btnTrailer{
+			background: transparent !important;
+			&:hover{
+				color: #fff !important;
+			}
+		}
+    }
+    @include tablet{
+        flex-direction: column;
+    }
+    &:hover{
+        .OneBlockMovie__overlay{
+            background: rgba(0,0,0,.6);
+        }
+    }
+    &__thumbnail{
+        @include size(100%, 100%);
+        @include desktop{
+            width: auto;
+        }
+        img{
+            min-width: 100%;
+            height: 100%;
+            @include desktop{
+                min-width: auto;
+                height: auto;
+            }
+        }
+    }
+    &__overlay{
+        @include size(100%, 100%);
+        @include posi-top-left(absolute, 0,0);
+        transition: .3s all;
+        z-index: 1;
+        background: linear-gradient(to bottom, #fff0, 60%, #000000eb);
+        @include desktop{
+            display: none;
+        }
+    }
+    
+    .star{
+        @include posi-top-right(absolute, 10px, 10px);
+        padding: 3px 10px;
+        background: #000;
+        border: 2px solid #fff;
+        color: #eee;
+		z-index: 5;
+		@include desktop{
+			background: transparent;
+		}
+        .fa{
+            font-size: 8px;
+            position: relative;
+            top: -9px;
+        }
+        &.danhGia{
+            background: #05666bcf;
+            .imdb{
+                font-size: 10px;
+                position: relative;
+                top: -9px;
+            }
+        }
+        
+    }
+    &__content{
+        @include size(100%, 100%);
+        @include posi-top-left(absolute, 0,0);
+        @include flex(flex-end, flex-start, column, wrap);
+        padding: 12px;
+        z-index: 2;
+        @include desktop{
+            position: static;
+        }
+        @include tablet{
+            align-items: center;
+        }
+        .header{
+            @include flex(space-between, center, row, wrap);
+            width: 100%;
+            .realeseDate h5{
+                font-size: 12px;
+                color: #fff;
+            }
+            
+        }
+        
+        .data{
+            &__text{
+                @include flex(flex-end, flex-start, column, nowrap);
+                color: #fff;
+                .author h5{
+                    font-family: monts-reg;
+                    font-size: 12px;
+                    margin: 10px 0;
+                }
+                .detail{
+                    margin-bottom: 30px;
+                    h2{
+                        font-size: 23px;
+                        @include tablet{
+                            margin-bottom:20px;
+                        }
+                    }
+                    p{
+                        font-family: lato-reg;
+                        font-size: 14px;
+                        display: none;
+                        @include desktop{
+                            display: block;
+                        }
+                    }
+                } 
+            }
+        
+        }
+    }
+    .btnLink{
+        @include posi-top-left(absolute, calc(100% - calc(40px / 2)), 50%);
+        width: 80%;
+        text-align: center; 
+        z-index:  4;
+        display: flex;
+        transform: translateX(-50%);
+        @include desktop{
+            position: static;
+            width: auto;
+            transform: translateX(0);
+            width: 100%;
+        }
+        .btnDetail{
+            width: 80%;
+            border-radius: 0;
+            height: 50px;
+            background: #000;
+            font-weight: bold;
+            transform: skew(0deg);
+            transition: .3s all;
+            margin: 0;
+            @include desktop{
+                width: auto !important;
+            }
+            span{
+                transform: skew(0deg);
+            }
+            &:hover{
+                background: #fff;
+                color:#000;
+            }
+        }
+        .btnTrailer{
+            @include flex(center, center, row, wrap);
+            @include size(50px, 50px);
+            border: none;
+            transition: .3s all;
+            z-index: 6;
+            cursor: pointer;
+            outline: 0;
+            background: #000;
+            color: #fff !important;
+            border-style: solid;
+            border-color: #fff;
+            border-width: 2px 2px 2px 0;
+            @include desktop{
+                position: static;
+                background: #000;
+                color: #fff!important;
+                border: 2px solid #fff;
+                border-radius: 0;
+                width: 80px;
+                margin-left: 10px;
+                &:hover{
+                    background:#fff;
+                    color: #000  !important;
+                    }
+            }
+        }
+    }
+}
+
+
+
+
+

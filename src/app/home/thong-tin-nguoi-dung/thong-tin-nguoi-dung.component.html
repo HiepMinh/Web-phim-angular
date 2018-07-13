@@ -1,0 +1,218 @@
+<div class="container-fluid DangKiPage">
+  <div class="row">
+    <div class="col-md-8 col-12 mx-auto divBtnLink">
+      <div class="block-btn-link d-flex justify-content-center">
+		<button 
+			class="linkHeading active" 
+			#btnThongTin 
+			data-setShow="FormInfo" 
+			(click)="setShowDiv(btnThongTin)" 
+			[ngx-scroll-to]="'#FormInfo'"
+			[ngx-scroll-to-duration]="1000" 
+			[ngx-scroll-to-easing]="'easeOutCubic'">
+          <span>
+            Thông Tin Tài Khoản
+            <i class="fa fa-user ml-1"></i>
+          </span>
+        </button>
+		<button 
+			class="linkHeading" 
+			#btnLSDatVe 
+			data-setShow="LichSuDatVe" 
+			(click)="setShowDiv(btnLSDatVe)" 
+			[ngx-scroll-to]="'#LichSuDatVe'"
+			[ngx-scroll-to-duration]="1000" 
+			[ngx-scroll-to-easing]="'easeOutCubic'">
+          <span>
+            Lịch Sử Đặt Vé
+            <i class="fa fa-film ml-1"> </i>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+  <div class="row divFormDangKy">
+
+	<div class="col-12 mx-auto" [ngClass]="divShowing == 'LichSuDatVe' ? 'd-block' : 'd-none'">
+	<div class="container" id="LichSuDatVe">
+		<div class="row">
+			<div class="col-12">
+				<table class="table table-hover tableLichSuDatVe">
+
+					<thead>
+						<tr>
+							<th> Mã </th>
+							<th>Tên Phim</th>
+							<th>Ngày Đặt</th>
+							<th>Giá Vé</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr *ngFor="let item of ThongTinTaiKhoan.DanhSachVeDaDat | paginate: { itemsPerPage:  entriesLSDV  , currentPage: p3, id: 'ListLSDatVe' }; let i = index">
+							<th>{{ item.MaGhe }}</th>
+							<th>{{ item.TenPhim }}</th>
+							<th>{{ item.NgayDat | date : 'dd-MM-yy lúc hh:mm ' }}</th>
+							<th>{{ item.GiaVe | number }}</th>
+						</tr>
+					</tbody>
+				</table>
+				<pagination-controls 
+					(pageChange)="p3 = $event" 
+					class="my-pagination"  
+					id="ListLSDatVe" 
+					autoHide="{{ hidePagiControl }}">
+				</pagination-controls>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+      <div class="col-12 mx-auto"  [ngClass]="divShowing == 'FormInfo' ? 'd-block' : 'd-none'">
+		<form  
+		class="formAuth container formAuth--infoUser" 
+		id="FormInfo" 
+		#InfoForm="ngForm" 
+		(ngSubmit)="CapNhatThongTin(InfoForm.value)">
+
+          <div class="row">
+            <div class="col-12">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8 col-10 mx-auto">
+                    <div class="form-group">
+                      <label for="HoTen">Họ Tên: </label>
+					  <input 
+					  id="HoTen" 
+					  type="text" 
+					  name="HoTen" 
+					  #HoTen="ngModel" 
+					  class="form-control form-marvel" 
+					  [(ngModel)]="ThongTinTaiKhoan.HoTen">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8 col-10 mx-auto">
+                    <div class="form-group">
+                      <label for="TaiKhoan">Tài Khoản: </label>
+					  <input 
+						  type="text" 
+						  id="TaiKhoan"
+						   name="TaiKhoan" 
+						   #TaiKhoan="ngModel" 
+						   class="form-control form-marvel" 
+						   [(ngModel)]="ThongTinTaiKhoan.TaiKhoan" 
+						   >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8 col-10 mx-auto">
+                    <div class="form-group">
+                      <label for="Email">Email: </label>
+					  <input 
+					  id="Email" 
+					  type="text" 
+					  name="Email" 
+					  #Email="ngModel" 
+					  class="form-control form-marvel" 
+					  [(ngModel)]="ThongTinTaiKhoan.Email">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-12">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8 col-10 mx-auto">
+                    <div class="form-group">
+                      <label for="SoDT">Số Điện Thoại: </label>
+					  <input 
+					  id="SoDT" 
+					  type="text" 
+					  name="SoDT" 
+					  #Phone="ngModel" 
+					  class="form-control form-marvel" 
+					  [(ngModel)]="ThongTinTaiKhoan.SoDT">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8 col-10 mx-auto">
+                    <div class="form-group">
+                      <label for="MatKhau">Mật Khẩu: </label>
+                      <span [ngClass]="XacNhanMatKhauCu ? '' : 'd-none'">
+                        <a href="#" data-toggle="modal" data-target="#modalXacNhanMK">
+                          Thay Đổi
+                          <i class="fa fa-cog"></i>
+                        </a>
+                      </span>
+					  <input 
+					  id="MatKhau" 
+					  [disabled]="XacNhanMatKhauCu" 
+					  type="password" 
+					  name="MatKhau" 
+					  #MatKhau="ngModel" 
+					  class="form-control form-marvel"
+					  [(ngModel)]="ThongTinTaiKhoan.MatKhau" 
+					  [ngClass]="XacNhanMatKhauCu ? 'disabled' : ''">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="container">
+                <div class="row">
+                  <div class="col-4 co mx-auto">
+                    <button class="btn rounded-0 py-2 btnLogin btn-block linkHeading mt-5 mx-0" type="submit">Cập Nhật</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+
+
+  </div>
+
+
+
+
+</div>
+<div class="modal fade" id="modalXacNhanMK" tabindex="-1" role="dialog">
+  <div class="modal-dialog mx-auto" role="document">
+    <div class="modal-content" style="background: transparent">
+      <div class="modal-body">
+        <div class="tim-kiem-phim xacNhanMK form-group">
+          <input type="text" class="form-marvel" placeholder="Nhập Mật Khẩu Cũ..." #inputConfirmMK>
+          <button class="linkHeading" (click)="XacNhanMK(inputConfirmMK.value, MatKhau)">
+            <i class="fa fa-angle-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

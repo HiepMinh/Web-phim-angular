@@ -1,0 +1,213 @@
+<!-- (click)="CallModalThemPhim()"
+data-toggle="modal"
+data-target="#modalThem" -->
+<div class="container" id="dataNguoiDung">
+	<div class="row">
+		<div class="col-md-10 col-12 mx-auto mb-4">
+			<mat-form-field class="example-full-width">
+				<span matPrefix><i class="fa fa-search 	"></i></span>
+				<input type="tel" matInput placeholder="Nhập Tên Người Dùng Cần Tìm...">
+			</mat-form-field>
+			<button 
+				mat-raised-button color="primary"
+				(click)="CallModalThemPhim()"
+				data-toggle="modal"
+				data-target="#modalThemNguoiDung"
+				>Thêm Người Dùng</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10 col-12 mx-auto">
+			<table class="table table-hoverable table-striped tableData z-depth-2" id="tablePhim">
+				<thead>
+					<tr>
+						<th>Tài Khoản</th>
+						<th>Họ Tên</th>
+						<th>Email</th>
+						<th>Số Điện Thoại</th>
+						<th>Loại Người Dùng</th>
+						<th>Thao Tác</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let data of ListNguoiDung | paginate: { itemsPerPage:  entryUser  , currentPage: p5, id: 'DanhSachUserAdmin' } ; let i = index">
+						<td>{{ data.TaiKhoan }}</td>
+						<td>{{ data.HoTen }}</td>
+						<td>{{ data.Email }}</td>
+						<td>{{ data.SoDT }}</td>
+						<td>{{ data.TenLoaiNguoiDung }}</td>
+						<td>
+							<button 
+								mat-raised-button color="primary"
+								(click)="xoaNguoiDung(data.TaiKhoan)"
+								>Xoá</button>
+							<button 
+							mat-raised-button 
+							color="warn" 
+							(click)="CallModalSuaNguoiDung(data.TaiKhoan)"
+							data-toggle="modal"
+							data-target="#modalSuaNguoiDung"
+							>Sửa</button>
+						</td>
+					</tr>	
+				</tbody>
+			</table>
+			<pagination-controls 
+			(pageChange)="p5 = $event" 
+			class="my-pagination"  
+			id="DanhSachUserAdmin" 
+			autoHide="{{ hidePagiControl }}">
+			</pagination-controls>
+		</div>
+	</div>
+</div>
+
+<ng-container *ngIf="CallModalSua">
+		<div class="modal fade" id="modalSuaNguoiDung">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Sửa Thông Tin Phim</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form 
+						#EditUserForm="ngForm" 
+						(ngSubmit)="CapNhatNguoiDung(EditUserForm.value)" 
+						class="text-white">
+						<mat-form-field class="example-full-width">
+								<input 
+									type="text" 
+									name="TaiKhoan" 
+									#TaiKhoan="ngModel"
+									[(ngModel)]="UserDetail.TaiKhoan"
+									matInput 
+									placeholder="Tên Tài Khoản..." >
+							</mat-form-field>
+							<mat-form-field class="example-full-width">
+								<input 
+									type="password" 
+									name="MatKhau" 
+									#MatKhau="ngModel"
+									[(ngModel)] ="UserDetail.MatKhau"
+									matInput 
+									placeholder="Mật Khẩu" >
+							</mat-form-field>
+							<mat-form-field class="example-full-width">
+								<input 
+									type="text"
+									matInput 
+									placeholder="Email..." 
+									name="Email" 
+									#Email="ngModel"
+									[(ngModel)]="UserDetail.Email">
+							</mat-form-field>
+							<mat-form-field class="example-full-width">
+								<input 
+									type="text"
+									matInput 
+									placeholder="Số Điện Thoại..." 
+									name="SoDT" 
+									#SoDT="ngModel"
+									[(ngModel)]="UserDetail.SoDT">
+							</mat-form-field>
+							<select #TypeUser name="MaLoaiNguoiDung" [(ngModel)]="UserDetail.MaLoaiNguoiDung">
+								<!-- <option value="{{ UserDetail.MaLoaiNguoiDung }}" selected>
+										{{ UserDetail.MaLoaiNguoiDung }}
+								</option> -->
+								<option value="{{ type.MaLoaiNguoiDung }}" *ngFor="let type of typeUser; let i = index">
+									<ng-container *ngIf="i.MaLoaiNguoiDung === UserDetail.MaLoaiNguoiDung">
+											{{ UserDetail.MaLoaiNguoiDung }}
+									</ng-container>
+									{{ type.MaLoaiNguoiDung }}
+								</option>
+							</select>
+
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button 
+								type="submit" 
+								class="btn btn-primary"
+								>Cập Nhật</button>
+						</form>
+					</div>
+						
+				</div>
+			</div>
+		</div>
+	</ng-container>
+	
+	<!-- Modal -->
+	<ng-container *ngIf="CallModalThem">
+		<div class="modal fade" id="modalThemNguoiDung">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Thêm Người Dùng</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form #AddUserForm="ngForm" (ngSubmit)="ThemNguoiDung(AddUserForm.value, TypeUser)" class="text-white">
+							<mat-form-field class="example-full-width">
+								<input 
+									type="text" 
+									name="TaiKhoan" 
+									ngModel 
+									matInput 
+									placeholder="Tên Tài Khoản..." >
+							</mat-form-field>
+							<mat-form-field class="example-full-width">
+								<input 
+									type="password" 
+									name="MatKhau" 
+									ngModel 
+									matInput 
+									placeholder="Mật Khẩu" >
+							</mat-form-field>
+							<mat-form-field class="example-full-width">
+								<input 
+									type="text"
+									matInput 
+									placeholder="Email..." 
+									name="Email" 
+									ngModel>
+							</mat-form-field>
+							<mat-form-field class="example-full-width">
+								<input 
+									type="text"
+									matInput 
+									placeholder="Số Điện Thoại..." 
+									name="SoDT" 
+									ngModel>
+							</mat-form-field>
+							<!-- <mat-form-field class="example-full-width">
+								<input 
+									type="text"
+									matInput 
+									placeholder="Số Điện Thoại..." 
+									name="SoDT" 
+									ngModel>
+							</mat-form-field> -->
+							<!-- <mat-form-field>
+								<mat-select placeholder="Loại Người Dùng">
+									<mat-option *ngFor="let type of typeUser" [value]="type.MaLoaiNguoiDung">
+									{{ type.TenLoaij }}
+									</mat-option>
+								</mat-select>
+							</mat-form-field> -->
+							<select #TypeUser>
+								<option value="{{ type.MaLoaiNguoiDung }}" *ngFor="let type of typeUser">
+										{{ type.TenLoai }}
+								</option>
+							</select>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Thêm</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ng-container>

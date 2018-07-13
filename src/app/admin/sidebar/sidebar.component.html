@@ -1,0 +1,47 @@
+<nav class="sidebar--admin">
+	<ul class="sidebar__nav">
+		<a href="#" class="logo-admin sidebar__item d-md-block d-none">
+			<h3 class="sidebar__link">H</h3>
+		</a>
+		<li 
+			class="sidebar__item" 
+			data-tab="divDashboard">
+			<a 
+				class="sidebar__link"  
+				[routerLink]="['/admin/dashboard']"  
+				routerLinkActive="active"
+				[routerLinkActiveOptions]="{ exact : true }"
+				>
+				<i class="fa fa-home"></i>
+				<span class="heading-secondary">Dashboard</span>
+			</a>
+		</li>
+		<li class="sidebar__item " data-tab="divNguoiDung">
+			<a 
+				class="sidebar__link"  
+				[routerLink]="['/admin/quanliphim']"
+				routerLinkActive="active"
+				[routerLinkActiveOptions]="{ exact : true }">
+				<i class="fa fa-film"></i>
+				<span class="heading-secondary">Movies</span>
+			</a>
+		</li>
+		<li class="sidebar__item" data-tab="divKhoaHoc">
+			<a 
+				class="sidebar__link"  
+				[routerLink]="['/admin/quanlinguoidung']"
+				routerLinkActive="active"
+				[routerLinkActiveOptions]="{ exact : true }"
+				>
+				<i class="fa fa-users"></i>
+				<span class="heading-secondary">Users</span>
+			</a>
+		</li>
+	</ul>
+	<div id="itemDangXuat">
+		<a href="#" class="sidebar__link">
+			<i class="fa fa-sign-out"></i>
+			<span class="heading-secondary">Sign Out</span>
+		</a>
+	</div>
+</nav>

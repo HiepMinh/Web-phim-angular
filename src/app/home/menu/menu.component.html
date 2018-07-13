@@ -1,0 +1,93 @@
+<header class="main-menu">
+  <div class="container main-menu__content">
+    <a [routerLink]="['/']" class="main-menu__logo content-left">
+      <img src="../../../assets/images/cyber.png" alt="">
+    </a>
+    <a href="#" #burgerIcon (click)="showSideBar(burgerIcon)" class="burger-icon border-0">
+      <div class="burger"></div>
+    </a>
+    <div class="content-right" #sideBar>
+      <div class="logo-res">
+          <a [routerLink]="['/']">
+            <img src="../../../assets/images/cyber.png" alt="">
+          </a>
+      </div>
+        
+      <div class="social-auth">
+        
+        <ul class="social">
+          <li><a href="#" class="fa fa-facebook-square"></a></li>
+          <li><a href="#" class="fa fa-globe"></a></li>
+          <li><a href="#" class="fa fa-youtube-square"></a></li>
+        </ul>
+        <div class="auth">
+          <ng-container *ngIf="DaDangNhap; then User else NoneUser"> </ng-container>
+          <ng-template #User>
+              <div class="info-user">
+                <div class="avatar-user">
+                  <img src="./../../../assets/images/avatar-troll.jpg" alt="">
+                </div>
+                <div class="name">
+                  <span>Minh Hiep</span> 
+                  <i class="fa fa-angle-down"></i>
+                </div>
+                <ul class="DangXuat-ThongTin">
+                  <li>
+                    <a [routerLink]="['/thong-tin-tai-khoan']">Thong Tin Ca Nhan</a>
+                  </li>
+                  <li>
+                    <a  class="DangXuat" (click)="DangXuat()">Dang Xuat</a>
+                  </li>
+                </ul>
+              </div>
+          </ng-template>
+          <ng-template #NoneUser>
+              <a href="#" [routerLink]="['/dang-ky']">Đăng Ký</a>
+              <a href="#" data-toggle="modal" data-target="#modalDangNhap">Đăng Nhập</a>
+          </ng-template>
+        </div>
+      </div>
+      <ul class="nav">
+		<li *ngFor="let link of links">
+			<a 
+				[routerLink]="['/']"
+				[ngx-scroll-to]="link.ScrollLocation" 
+				[ngx-scroll-to-duration]="DurationScroll"
+				[ngx-scroll-to-easing]="'easeOutCubic'"
+				>
+				<span>{{ link.text }}</span>
+			</a>
+		</li>
+		<li>
+			<a data-toggle="modal" data-target="#modalTimKiem" [routerLink]="['/']">
+				<span>Tìm Phim</span>
+			</a>
+		</li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<div class="modal fade" id="modalDangNhap" tabindex="-1" role="dialog">
+  <div class="modal-dialog mx-auto" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+        <app-dang-nhap></app-dang-nhap>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modalTimKiem" tabindex="-1" role="dialog">
+  <div class="modal-dialog mx-auto" role="document">
+    <div class="modal-content border-0" style="background: transparent">
+      <div class="modal-body p-0">
+          <app-tim-kiem-phim #InputTimKiemPhim></app-tim-kiem-phim>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

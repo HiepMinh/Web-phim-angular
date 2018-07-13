@@ -1,0 +1,35 @@
+<div class="tim-kiem-phim">
+	<input 
+		type="text" 
+		class="form-marvel" 
+		placeholder="Nhập Tên Phim..."
+		#inputTimKiem
+		(keyup)="findMovie(inputTimKiem.value)"
+	  	>
+	<div class="divDSPhinTim" *ngIf="DanhSachCanTim.length > 0">
+		<h4 class="ResultLenght">Kết Quả : {{ DanhSachCanTim.length }} Phim</h4>
+		<div class="divDSPhinTim__content">
+			<div 
+				class="one-block-phim-can-tim"
+				*ngFor="let phim of DanhSachCanTim">
+				<div class="img-phim">
+					<img src="{{ phim.HinhAnh }}" alt="">
+				</div>
+				<div class="main-info">
+					<h3 class="name">{{ phim.TenPhim }}</h3>		
+					<p class="date">{{ phim.NgayKhoiChieu | date : 'dd-MM-yyyy' }}</p>		
+					<button 
+						mat-raised-button color="primary"
+						[routerLink]="['/chi-tiet-phim']" 
+						[queryParams]="{id:phim.MaPhim}"
+						data-dismiss="modal"
+						>Chi Tiết</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+

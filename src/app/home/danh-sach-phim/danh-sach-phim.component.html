@@ -1,0 +1,38 @@
+<div class="container danhSachPhimContent" id="DSPhim">
+    <div class="row">
+        <div class="col-12">
+            <div class="headingSection">
+                <div class="big-line"></div>
+                <h3 class="title-section">Danh Sách Phim</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="linkContent d-flex justify-content-between my-5">
+                <div class="d-flex">
+                    <a href="#" class="linkHeading" [ngClass]="{'active' : listShow === 'phimDangChieu'}" #DSPhimDangChieu data-show="phimDangChieu"
+                        (click)="showContent(DSPhimDangChieu)">
+                        <span>Phim Đang Chiếu
+                        <!-- <i>{{ slMovieDangChieu }}</i> -->
+                        </span>
+                    </a>
+                    <a href="#" class="linkHeading" [ngClass]="{'active' : listShow === 'phimSapChieu'}" #DSPhimSapChieu (click)="showContent(DSPhimSapChieu)"
+                        data-show="phimSapChieu">
+                        <span>Phim Sắp Chiếu</span>
+                        <!-- <i>{{ slMovieSapChieu }}</i> -->
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <ng-container *ngIf="listShow == 'phimDangChieu'; then DanhSachPhimDangChieu else DanhSachPhimSapChieu "></ng-container>
+    <ng-template #DanhSachPhimDangChieu>
+        <app-phim-dang-chieu></app-phim-dang-chieu>
+    </ng-template>
+    <ng-template #DanhSachPhimSapChieu>
+        <app-phim-sap-chieu></app-phim-sap-chieu>
+    </ng-template>
+</div>
+
